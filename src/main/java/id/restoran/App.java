@@ -7,6 +7,7 @@ import id.restoran.service.TicketStore;
 import id.restoran.ui.HomeView;
 import id.restoran.ui.KitchenBoardView;
 import id.restoran.ui.OrderView;
+import id.restoran.ui.ReportView;
 import id.restoran.ui.Styles;
 import id.restoran.ui.View;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public final class App {
         });
         // Perbarui waktu tunggu di papan dapur setiap 30 detik.
         Window.setInterval(() -> {
-            if (current != null && "dapur".equals(current.key())) {
+            if (current != null && ("dapur".equals(current.key()) || "laporan".equals(current.key()))) {
                 refresh();
             }
         }, 30000);
@@ -53,6 +54,7 @@ public final class App {
         VIEWS.add(new HomeView());
         VIEWS.add(new OrderView());
         VIEWS.add(new KitchenBoardView());
+        VIEWS.add(new ReportView());
     }
 
     private static void buildShell() {

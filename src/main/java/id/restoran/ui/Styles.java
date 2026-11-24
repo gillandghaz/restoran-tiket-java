@@ -11,7 +11,7 @@ public final class Styles {
 
     public static void install() {
         HTMLElement style = Dom.el("style");
-        style.setInnerText(BASE + MENU + ORDER + BOARD);
+        style.setInnerText(BASE + MENU + ORDER + BOARD + REPORT);
         Dom.doc().getHead().appendChild(style);
     }
 
@@ -187,5 +187,52 @@ public final class Styles {
             .status-pill.st-wait { background: #fbead7; color: var(--warn); }
             .status-pill.st-cook { background: #f8e1df; color: var(--danger); }
             .status-pill.st-ready { background: #e2f3e9; color: var(--ok); }
+            """;
+
+    private static final String REPORT = """
+            .muted { color: var(--muted); font-size: 14px; }
+            .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 18px; }
+            .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+              padding: 16px; box-shadow: var(--shadow); }
+            .stat-label { font-size: 12px; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+            .stat-value { font-size: 24px; font-weight: 800; margin: 6px 0 2px; color: var(--brand-dark); }
+            .stat-hint { font-size: 12.5px; color: var(--muted); }
+            .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+            @media (max-width: 800px) { .report-grid { grid-template-columns: 1fr; } }
+            .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+              padding: 18px; box-shadow: var(--shadow); }
+            .panel h3 { margin: 0 0 14px; }
+            .bar-row { margin-bottom: 14px; }
+            .bar-head { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 5px; }
+            .bar-track { height: 12px; background: #f3ebe1; border-radius: 999px; overflow: hidden; }
+            .bar-fill { height: 100%; border-radius: 999px; background: var(--accent); min-width: 2px; }
+            .bar-fill.cuisine-id { background: #c0392b; }
+            .bar-fill.cuisine-jp { background: #d6457a; }
+            .bar-fill.cuisine-ar { background: #1f8a70; }
+            .rank { margin: 0; padding-left: 22px; }
+            .rank li { padding: 7px 0; border-bottom: 1px dashed var(--line); }
+            .rank li::marker { font-weight: 800; color: var(--brand); }
+            .rank-name { font-weight: 600; }
+            .rank-qty { float: right; color: var(--muted); font-size: 14px; }
+            .modal-overlay { position: fixed; inset: 0; background: rgba(30, 20, 10, .55); z-index: 40;
+              display: flex; align-items: center; justify-content: center; padding: 16px; }
+            .modal { background: #fff; border-radius: var(--radius); padding: 20px; max-height: 92vh; overflow-y: auto;
+              box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+            .receipt { width: 320px; font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: 13px;
+              color: #111; padding: 6px 4px; }
+            .rc-center { text-align: center; }
+            .rc-title { font-size: 16px; font-weight: 800; letter-spacing: 1px; }
+            .rc-small { font-size: 11.5px; color: #444; }
+            .rc-sep { border-top: 1px dashed #999; margin: 8px 0; }
+            .rc-row { display: flex; justify-content: space-between; gap: 8px; padding: 1px 0; }
+            .rc-item { font-weight: 700; margin-top: 4px; }
+            .rc-total { font-weight: 800; font-size: 15px; margin-top: 4px; }
+            .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+            @media print {
+              body.printing-receipt > *:not(.modal-overlay) { display: none !important; }
+              body.printing-receipt .modal-overlay { position: static; background: none; padding: 0; }
+              body.printing-receipt .modal { box-shadow: none; padding: 0; }
+              body.printing-receipt .modal-actions { display: none; }
+            }
             """;
 }
