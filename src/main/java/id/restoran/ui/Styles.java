@@ -11,7 +11,7 @@ public final class Styles {
 
     public static void install() {
         HTMLElement style = Dom.el("style");
-        style.setInnerText(BASE);
+        style.setInnerText(BASE + MENU);
         Dom.doc().getHead().appendChild(style);
     }
 
@@ -71,5 +71,37 @@ public final class Styles {
               color: #fff; padding: 12px 20px; border-radius: 10px; box-shadow: var(--shadow); z-index: 50;
               animation: fade 2.6s forwards; }
             @keyframes fade { 0% { opacity: 0; } 10% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+            """;
+
+    private static final String MENU = """
+            .menu-layout { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start; }
+            .search { flex: 1; max-width: 360px; padding: 10px 14px; border-radius: 999px;
+              border: 1px solid var(--line); background: #fff; outline: none; }
+            .search:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(180,68,29,.15); }
+            .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+            .chip { border: 1px solid var(--line); background: #fff; color: var(--ink); padding: 7px 14px;
+              border-radius: 999px; font-weight: 600; font-size: 14px; }
+            .chip:hover { border-color: var(--brand); }
+            .chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+            .chips-sm .chip { padding: 4px 11px; font-size: 13px; font-weight: 500; }
+            .chips-sm .chip.active { background: var(--accent); border-color: var(--accent); }
+            .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px;
+              margin-top: 14px; }
+            .menu-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+              padding: 16px; display: flex; flex-direction: column; box-shadow: var(--shadow);
+              border-top: 4px solid var(--accent); transition: transform .12s; }
+            .menu-card:hover { transform: translateY(-2px); }
+            .menu-card.cuisine-id { border-top-color: #c0392b; }
+            .menu-card.cuisine-jp { border-top-color: #d6457a; }
+            .menu-card.cuisine-ar { border-top-color: #1f8a70; }
+            .menu-card-head { display: flex; justify-content: space-between; align-items: center; }
+            .menu-emoji { font-size: 38px; }
+            .pill { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: #f4ece3; color: var(--muted); }
+            .menu-name { margin: 10px 0 2px; font-size: 17px; }
+            .menu-cat { font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--accent);
+              font-weight: 700; }
+            .menu-desc { flex: 1; font-size: 13.5px; color: var(--muted); margin: 8px 0 12px; }
+            .menu-card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+            .price { color: var(--brand-dark); font-size: 16px; }
             """;
 }
