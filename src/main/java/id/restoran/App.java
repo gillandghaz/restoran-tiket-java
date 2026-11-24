@@ -3,7 +3,9 @@ package id.restoran;
 import static id.restoran.ui.Dom.el;
 
 import id.restoran.ui.Dom;
+import id.restoran.service.TicketStore;
 import id.restoran.ui.HomeView;
+import id.restoran.ui.KitchenBoardView;
 import id.restoran.ui.OrderView;
 import id.restoran.ui.Styles;
 import id.restoran.ui.View;
@@ -30,12 +32,27 @@ public final class App {
         registerViews();
         buildShell();
         Window.current().onEvent("hashchange", evt -> showFromHash());
+        TicketStore.get().addListener(App::updateBadges);
+        // Sinkron antar-tab: kasir dan dapur bisa membuka tab berbeda di browser yang sama.
+        Window.current().onEvent("storage", evt -> {
+            TicketStore.get().load();
+            TicketStore.get().notifyListeners();
+            refresh();
+        });
+        // Perbarui waktu tunggu di papan dapur setiap 30 detik.
+        Window.setInterval(() -> {
+            if (current != null && "dapur".equals(current.key())) {
+                refresh();
+            }
+        }, 30000);
         showFromHash();
+        updateBadges();
     }
 
     private static void registerViews() {
         VIEWS.add(new HomeView());
         VIEWS.add(new OrderView());
+        VIEWS.add(new KitchenBoardView());
     }
 
     private static void buildShell() {
@@ -94,6 +111,19 @@ public final class App {
     public static void refresh() {
         Dom.clear(main);
         current.render(main);
+    }
+
+    /** Perbarui label dan badge di navigasi. */
+    public static void updateBadges() {
+        for (int i = 0; i < TABS.size(); i++) {
+            HTMLElement tab = TABS.get(i);
+            View v = VIEWS.get(i);
+            tab.setInnerText(v.label());
+            String badge = v.badge();
+            if (badge != null) {
+                tab.appendChild(el("span", "badge", badge));
+            }
+        }
     }
 
     /** Pindah ke tab berdasarkan key (mengubah hash URL). */
