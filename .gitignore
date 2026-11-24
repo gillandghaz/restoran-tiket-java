@@ -1,0 +1,8 @@
+target/
+dist/
+.jdk/
+.vercel/
+*.class
+.idea/
+*.iml
+.vscode/
