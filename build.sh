@@ -3,6 +3,9 @@
 # lewat TeaVM, lalu menyalin hasilnya ke folder `dist` (static output).
 set -euo pipefail
 
+# Image build Vercel tidak punya locale en_US.UTF-8; pakai locale C agar log bersih.
+export LANG=C LC_ALL=C
+
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 JDK_DIR="$ROOT/.jdk"
 
