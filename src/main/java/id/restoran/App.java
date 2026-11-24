@@ -4,6 +4,7 @@ import static id.restoran.ui.Dom.el;
 
 import id.restoran.ui.Dom;
 import id.restoran.ui.HomeView;
+import id.restoran.ui.MenuView;
 import id.restoran.ui.Styles;
 import id.restoran.ui.View;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public final class App {
 
     private static void registerViews() {
         VIEWS.add(new HomeView());
+        VIEWS.add(new MenuView());
     }
 
     private static void buildShell() {
