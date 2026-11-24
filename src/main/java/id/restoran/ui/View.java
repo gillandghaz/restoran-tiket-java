@@ -14,4 +14,9 @@ public interface View {
 
     /** Bangun ulang isi halaman ke dalam container. */
     void render(HTMLElement container);
+
+    /** Angka kecil di samping label navigasi; null jika tidak ada. */
+    default String badge() {
+        return null;
+    }
 }

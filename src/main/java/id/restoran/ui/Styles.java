@@ -11,7 +11,7 @@ public final class Styles {
 
     public static void install() {
         HTMLElement style = Dom.el("style");
-        style.setInnerText(BASE + MENU + ORDER);
+        style.setInnerText(BASE + MENU + ORDER + BOARD);
         Dom.doc().getHead().appendChild(style);
     }
 
@@ -140,5 +140,52 @@ public final class Styles {
             .sum-row { display: flex; justify-content: space-between; font-size: 14px; padding: 3px 0; color: var(--muted); }
             .sum-row.total { font-size: 18px; font-weight: 800; color: var(--ink); padding-top: 6px; }
             .btn-block { width: 100%; padding: 12px; font-size: 15px; }
+            """;
+
+    private static final String BOARD = """
+            .title-actions { display: flex; gap: 8px; }
+            .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
+            @media (max-width: 900px) { .board { grid-template-columns: 1fr; } }
+            .column { background: #f3ebe1; border-radius: var(--radius); padding: 12px; min-height: 200px;
+              border-top: 5px solid var(--muted); }
+            .column.st-wait { border-top-color: var(--warn); }
+            .column.st-cook { border-top-color: var(--danger); }
+            .column.st-ready { border-top-color: var(--ok); }
+            .column-head { display: flex; justify-content: space-between; align-items: center; font-weight: 800;
+              margin: 2px 4px 12px; }
+            .column-count { background: #fff; border-radius: 999px; padding: 1px 10px; font-size: 13px; }
+            .column-empty { text-align: center; color: var(--muted); font-size: 14px; padding: 26px 0; }
+            .ticket { background: var(--surface); border-radius: 12px; padding: 12px 14px; margin-bottom: 12px;
+              box-shadow: var(--shadow); border-left: 4px solid transparent; }
+            .ticket.late { border-left-color: var(--danger); }
+            .ticket-head { display: flex; justify-content: space-between; align-items: center; }
+            .ticket-code { font-family: ui-monospace, Consolas, monospace; font-size: 17px; }
+            .ticket-table { background: var(--ink); color: #fff; border-radius: 8px; padding: 2px 9px;
+              font-size: 13px; font-weight: 700; }
+            .ticket-meta { display: flex; justify-content: space-between; gap: 6px; font-size: 13px;
+              color: var(--muted); margin: 6px 0; flex-wrap: wrap; }
+            .wait.late { color: var(--danger); font-weight: 700; }
+            .ticket-items { list-style: none; padding: 0; margin: 8px 0; border-top: 1px dashed var(--line); }
+            .ticket-items li { display: flex; gap: 8px; padding: 5px 0; font-size: 14.5px; border-bottom: 1px dashed var(--line); }
+            .ticket-qty { font-weight: 800; color: var(--brand); min-width: 26px; }
+            .ticket-cuisine { margin-left: auto; }
+            .ticket-notes { background: #fff6df; border-radius: 8px; padding: 6px 9px; font-size: 13px; margin: 6px 0; }
+            .ticket-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px;
+              flex-wrap: wrap; margin-top: 8px; }
+            .ticket-total { font-weight: 700; font-size: 14px; }
+            .ticket-btns { display: flex; gap: 6px; }
+            .history { margin-top: 28px; }
+            .history h3 { margin: 0 0 10px; }
+            .history-table { width: 100%; border-collapse: collapse; background: var(--surface);
+              border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); font-size: 14px; }
+            .history-table th, .history-table td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+            .history-table th { background: #f3ebe1; font-size: 12px; text-transform: uppercase; color: var(--muted); }
+            .mono { font-family: ui-monospace, Consolas, monospace; font-weight: 700; }
+            .status-pill { border-radius: 999px; padding: 2px 10px; font-size: 12.5px; font-weight: 700; }
+            .status-pill.st-done { background: #e2f3e9; color: var(--ok); }
+            .status-pill.st-cancel { background: #f8e1df; color: var(--danger); }
+            .status-pill.st-wait { background: #fbead7; color: var(--warn); }
+            .status-pill.st-cook { background: #f8e1df; color: var(--danger); }
+            .status-pill.st-ready { background: #e2f3e9; color: var(--ok); }
             """;
 }
